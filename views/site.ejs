@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<script>
+  function clearForm() {
+    document.getElementById('id').value = ''
+    document.getElementById('name').value = ''
+    document.getElementById('info').value = ''
+  }
+
+  function dataSet(id, name,info) {
+    document.getElementById('id').value = id
+    document.getElementById('name').value = name
+    document.getElementById('info').value = info
+  }
+</script>
+<body>
+  <header>
+    <h1>Site</h1>
+    <div class="menu">
+      <a href="javascript:window.close()">閉じる</a> | 
+      <a href="javascript:location.reload()">リロード</a>
+    </div>
+  </header>
+  <article>
+    <!-- メッセージ -->
+    <p class="message"><%= message %></p>
+    <!-- 入力・修正フォーム -->
+    <form method="POST">
+      <!-- id -->
+      <div class="form-row">
+        <div class="form-column-label">id</div>
+        <div class="form-column-control"><input type="number" name="id" id="id" readonly value="<%= data.id %>" /></div>
+      </div>
+      <!-- name -->
+      <div class="form-row">
+        <div class="form-column-label">name</div>
+        <div class="form-column-control"><input type="text" name="name" id="name" size="50" value="<%= data.name %>" /></div>
+      </div>
+      <!-- info -->
+      <div class="form-row">
+        <div class="form-column-label">info</div>
+        <div class="form-column-control"><input type="text" name="info" id="info" size="100" value="<%= data.info %>" /></div>
+      </div>
+      <!-- 送信ボタン -->
+      <div style="margin-top:12px;">
+        <button type="submit">送信する</button>
+        <button type="button" onclick="javascript:clearForm()">クリアする</button>
+      </div>
+    </form>
+    <!-- 内容一覧表示 -->
+    <% if (content.length > 0) { %>
+      <table style="margin-top:48px;margin-left:10%;">
+        <!-- タイトル行 -->
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>info</th>
+            <th>date</th>
+          </tr>
+        </thead>
+        <!-- データ行 -->
+        <tbody>
+          <% for (const row of content) { %>
+            <tr>
+              <td><a href="javascript:dataSet(<%= row.id %>, '<%= row.name %>', '<%= row.info %>')"><%= row.id %></a></td>
+              <td><%= row.name %></td>
+              <td><%= row.info %></td>
+              <td><%= row.date %></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    <% } %>
+  </article>
+  <footer>
+    <p>&nbsp;</p>
+    <p style="text-align:center;"><a href="#top">TOP</a></p>
+    <p>&nbsp;</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    async function window_load() {
+      const res = await fetch('/marks')
+      const marks = await res.json()
+      const marks_elem = document.getElementById('marks')
+      // 既存の option をクリアしてプレースホルダを追加
+      marks_elem.innerHTML = '<option value="">選択してください ...</option>'
+      // marks は文字列の配列として返される想定
+      for (const m of marks) {
+        const opt = document.createElement('option')
+        opt.value = m
+        opt.textContent = m
+        marks_elem.appendChild(opt)
+      }
+      // 選択時にマークでフィルタしてページ遷移する
+      marks_elem.addEventListener('change', function () {
+        if (this.value) {
+          location.href = '/?mark=' + encodeURIComponent(this.value)
+        }
+      })
+      // 「ワード検索」ボタンがクリックされたときのイベントハンドラ
+      const filter_button = document.getElementById('filter_button')
+      const filter = document.getElementById('filter')
+      filter_button.addEventListener('click', function() {
+        location.href = '/?filter=' + encodeURIComponent(filter.value)
+      })
+    }
+  </script>
+  </head>
+  <body onload="javascript:window_load()">
+    <!--  スティッキーリンク -->
+     <div class="sticky-top text-end me-1 mt-2"><a href="#top">&#x1f53c;Top</a> / <a href="#bottom">&#x1f53d;Bottom</a></div>
+    <!-- ページタイトル -->
+    <header>
+      <h1><%= title %></h1>
+    </header>
+    <!-- メニュー -->
+     <div class="menu">
+      <a href="/">&#x2757;リセット</a> | 
+      <a href="/view">&#x2728;ビュー</a> | 
+      <a href="/insert" target="_blank">&#x1f505;データ追加</a> | 
+      &#x2753;mark <select id="marks" name="marks"><option>選択してください ...</option></select> | 
+      &#x1f50d;ワード検索 <input type="text" id="filter" name="filter" size="50">&nbsp;<input type="button" id="filter_button" name="filter_button" value="検索"> | 
+      並び順: <a href="/?order=ASC">&#x2b07;昇順</a> , <a href="/?order=DESC">&#x2b06;降順</a> | 
+      <a href="/?fav=1">&#x1fa75;好き</a> | 
+      <a href="/site" target="_blank">&#x2733;Site</a> | 
+      <a href="/checkpoint" target="_blank">&#x1faa9;Checkpoint</a> | 
+      <a href="/lora" target="_blank">&#x1f531;LoRA</a> | 
+      <a href="/vae" target="_blank">&#x1f4a0;VAE</a>
+    </div>
+
+
+     <article>
+      <!-- メッセージ -->
+      <p class="message"><%= message %></p>
+      <!-- ページの内容 -->
+      <% if (data.length > 0) { %>
+        <% if (view == 'list') { %>
+          <!-- 画像一覧表示 -->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>path</th>
+                <th>site</th>
+                <th>checkpoint</th>
+                <th>mark</th>
+                <th>fav</th>
+                <th>info</th>
+                <th>date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (const item of data) { %>
+                <tr>
+                  <td><a href="/update/<%= item.id %>" target="_blank"><%= item.id %></a></td>
+                  <td><a href="/show/<%= item.id %>" target="_blank"><%= item.title %></a></td>
+                  <td><%= item.path %></td>
+                  <td><%= item.site %></td>
+                  <td><%= item.checkpoint %></td>
+                  <td><%= item.mark %></td>
+                  <td><%= item.fav %></td>
+                  <td><%= item.info %></td>
+                  <td><%= item.date %></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <div>
+            <!-- 画像縮小表示 -->
+            <% for (const item of data)  { %>
+              <a href="/show/<%= item.id %>" target="_blank"><img src="/image?path=<%= item.path %>" style="width:120px;padding:3px;"></a>
+            <% } %>
+          </div>
+        <% } %>
+      <% } %>
+    </article>
+
+    <foolder>
+      <p><a id=""bottom"></a>&nbsp;</p>
+      <p style="text-align:center;"><a href="#top">TOP</a></p>
+      <p>&nbsp;</p>
+    </foolder>
+  </body>
+</html>

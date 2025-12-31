@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title><%= title %></title>
+  </head>
+
+  <body>
+    <header style="text-align:center;">
+      <h1 style="color:darkcyan"><%= title %></h1>
+      <div style="padding:8px;">
+        <a href="javascript:window.close()">閉じる</a> | 
+        <a href="#bottom">プロパティ</a>
+      </div>
+    </header>
+
+    <article>
+      <div style="text-align:center;">
+        <img src="/image?path=<%= data.path %>">
+      </div>
+      <a id="bottom"></a></p>
+      <p style="margin-top:20px;margin-left:10%;font-weight:bold;">画像のプロパティ</p>
+      <ul style="list-style-type: square;margin-top:6px;margin-left:10%;">
+        <li>タイトル：<%= data.title %></li>
+        <li>ファイルパス：<%= data.path %></li>
+        <li>サイト：<%= data.site %> (<%= names.site %>)</li>
+        <li>チェックポイント：<%= data.checkpoint %> (<%=  names.checkpoint %>)</li>
+        <li>LoRA：<%= data.lora %> (<%= names.lora %>) </li>
+        <li>VAE：<%= data.vae %> (<%= names.vae %>)</li>
+        <li>プロンプト：<%= data.prompt %></li>
+        <li>Nプロンプト：<%= data.neg_prompt %></li>
+        <li>マーク：<%= data.mark %></li>
+        <li>好き：<%= data.fav %></li>
+        <li>情報：<%= data.info %></li>
+        <li>作成日：<%= data.date %></li>
+      </ul>
+    </article>
+
+    <footer>
+      <p style="text-align:center;margin-top:12px;"><a href="#top">TOP</a></p>
+      <p>&nbsp;</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name":"koa5.js",
+  "version":"1.0.4",
+  "description":"Koa.js server",
+  "license":"ISC",
+  "author":"user",
+  "type":"module",
+  "main":"index.js",
+  "scripts":{"start":"node index.js"},
+  "dependencies":{
+    "@koa/router":"*",
+    "better-sqlite3":"*",
+    "date-fns":"*",
+    "ejs":"*",
+    "koa":"*",
+    "koa-body":"*",
+    "koa-bodyparser":"*",
+    "koa-logger":"*",
+    "koa-session":"*",
+    "koa-static":"*",
+    "koa-views":"*"
+  }
+}

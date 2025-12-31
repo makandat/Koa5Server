@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>データの更新</title>
+    <style>
+    header {
+      margin-left:10%;
+      margin-right:10%;
+      margin-top:5px;
+      margin-bottom:20px;
+      background-color:floralwhite;
+    }
+    article {
+      margin-left:10%;
+      margin-right:10%;
+    }
+    footer {
+      margin-left:10%;
+      margin-right:10%;
+    }
+    h1 {
+      text-align: center;
+      color: navy;
+      padding-top: 16px;
+    }
+    .form-row {
+      margin-top: 6px;
+    }
+    input {
+      border-radius:4px;
+      padding:2px;
+      height:32px;
+      border:solid thin lightgray;
+      font-size:11pt;
+    }
+    button {
+      border-radius:4px;
+      padding:4px;
+      height:40px;
+    }
+    .message {
+      text-align: center;
+      font-size: 1.2em;
+      color: fuchsia;
+      padding: 8px;
+    }
+    .menu {
+      margin-top:4px;
+      margin-bottom:4px;
+      padding: 3px;
+      background-color:azure;
+    }
+    form {
+      margin-left: 10%;
+      margin-right: 10%;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+    .form-row {
+      display: flex;
+      flex-direction: row;
+      padding: 2px;
+    }
+    .form-column-label {
+      padding: 3px;
+      width: 120px;
+    }
+    .form-column-control {
+      padding: 3px;
+    }
+    :any-link, :visited {
+      color:rgb(46, 43, 226);
+      text-decoration: none;
+    }
+    table {
+      border-collapse:collapse;
+    }
+    th {
+      border: solid thin silver;
+      border-collapse:collapse;
+      background-color:whitesmoke;
+      text-align:center;
+      padding:3px;
+    }
+    td {
+      border: solid thin silver;
+      border-collapse:collapse;
+      padding:2px;
+    }
+    </style>      
+  </head>
+  <body>
+    <header>
+      <h1>データの更新</h1>
+      <div class="menu"><a href="javascript:window.close()">フォームを閉じる</a></div>
+    </header>
+    <article>
+      <p class="message"><%= message %></p>
+      <form method="POST">
+        <div class="form-row">
+          <div class="form-column-label">id</div>
+          <div class="form-column-control"><input type="number" name="id" id="id" value="<%= data.id %>" readonly /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-column-label">title</div>
+          <div class="form-column-control"><input type="text" name="title" id="title" size="70" value="<%= data.title %>"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-column-label">path</div>
+          <div class="form-column-control"><input type="text" name="path" id="path" size="140" value="<%= data.path %>"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-column-label">site</div>
+          <div class="form-column-control"><input type="number" name="site" id="site" value="<%= data.site %>"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-column-label">checkpoint</div>
+          <div class="form-column-control"><input type="number" name="checkpoint" id="checkpoint" value="<%= data.checkpoint %>"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-column-label">lora</div>
+          <div class="form-column-control"><input type="number" name="lora" id="lora" value="<%= data.lora %>"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-column-label">vae</div>
+          <div class="form-column-control"><input type="number" name="vae" id="vae" value="<%= data.vae %>"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-column-label">prompt</div>
+          <div class="form-column-control"><input type="text" name="prompt" id="prompt" size="140" value="<%= data.prompt %>"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-column-label">neg_prompt</div>
+          <div class="form-column-control"><input type="text" name="neg_prompt" id="neg_prompt" size="140" value="<%= data.neg_prompt %>"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-column-label">mark</div>
+          <div class="form-column-control"><input type="text" name="mark" id="mark" size="40" value="<%= data.mark %>"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-column-label">fav</div>
+          <div class="form-column-control"><input type="number" name="fav" id="fav" value="<%= data.fav %>"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-column-label">info</div>
+          <div class="form-column-control"><input type="text" name="info" id="info" size="140" value="<%= data.info %>"/></div>
+        </div>
+        <div style="margin-top:12px;margin-left:3px;">
+          <button type="submit" style="width:150px;"> 送信する </button>
+        </div>
+      </form>
+    </article>
+  </body>
+</html>
